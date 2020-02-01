@@ -18,3 +18,17 @@ after_success:
   - docker push shogotagami/multi-nginx
   - docker push shogotagami/multi-server
   - docker push shogotagami/multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: fib-counter
+  env: FibCounter-env
+  bucket_name: elasticbeanstalk-us-east-2-927395323393
+  bucket_path: fib-counter
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
